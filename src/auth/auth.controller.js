@@ -17,7 +17,28 @@ const registration = (request, response, next) => {
     .catch(next);
 };
 
+const findAll = (request, response, next) => {
+  service.findAll()
+  .then(dto => {
+    response.status(200);
+    response.json(dto);
+  })
+    .catch(next);
+};
+
+const getById = (request, response, next) => {
+  const id = Number(request.params.id);
+  service.getById(id)
+  .then(dto => {
+    response.status(200);
+    response.json(dto);
+  })
+    .catch(next);
+};
+
 module.exports = {
   login,
-  registration
+  registration,
+  getById,
+  findAll 
 }

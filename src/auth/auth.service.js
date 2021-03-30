@@ -1,13 +1,17 @@
 const jwt = require('jsonwebtoken');
-const repository = require('../user/user.repository');
+const repository = require('./user.repository');
 const mapper = require('./auth.mapper');
 const tokenService = require('../common/token.service');
 const { INVALID_CREDENTIALS } = require('../common/error/error-type');
+//const bcrypt = require('bcrypt');
+var sha1 = require('sha1');
+
+
 
 
 class AuthService {
   login(credentials) {
-    return repository.findByCredentials(credentials.username, credentials.password)
+    return repository.findByCredentials(credentials.username, sha1(credentials.password))
       .then(user => {
         if (user) {
           return tokenService.generateToken(mapper.toDto(user))
@@ -16,18 +20,24 @@ class AuthService {
       });
   }
   save(model, id) {
-   // return Promise.resolve(new toDto({ ...rawDto, id }))
-     // .then(dto => mapper.toModel(dto))
-     
+   /* return Promise.resolve(new Dto({ ...rawDto, id }))
+     .then(dto => mapper.toModel(dto))
+     .then(model => {*/
         if (id) {
-          return repository.update(model);
+          return repository.update(mapper.toDto(model));
         } else {
-          return repository.create(model);
+          return repository.create(mapper.toDto(model));
         }
-      
+   //  })
      // .then(model => mapper.toDto(model));
   }
+  findAll() {
+    return repository.findAll()
+  }
 
+  getById(id) {
+    return repository.getById(id)
+  }
   
 }
 

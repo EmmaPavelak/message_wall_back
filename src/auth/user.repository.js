@@ -1,13 +1,17 @@
+const UserModel = require('./user.model');
 const { ValidationError } = require('sequelize');
-const CharacterModel = require('./character.model');
 const { RESOURCE_ID_NOT_FOUND, MISSING_RESOURCE_FIELD } = require('../common/error/error-type');
 
-const findAll = () => {
-  return CharacterModel.findAll();
+const findByCredentials = (username, password) => {
+  return UserModel.findOne({ having: { username, password }, rejectOnEmpty: false });
 };
 
-const get = id => {
-  return CharacterModel.findByPk(id)
+const findAll = () => {
+  return UserModel.findAll();
+};
+
+const getById = id => {
+  return UserModel.findByPk(id)
     .then(model => {
       if (model) {
         return model;
@@ -18,7 +22,7 @@ const get = id => {
 };
 
 const create = model => {
-  return CharacterModel.create(model)
+  return UserModel.create(model)
     .catch(error => {
       if (error instanceof ValidationError) {
         return Promise.reject({ type: MISSING_RESOURCE_FIELD, param: error.errors[0].path });
@@ -27,8 +31,9 @@ const create = model => {
     });
 };
 
+
 const update = model => {
-  return CharacterModel.update(model, { where: { id: model.id } })
+  return UserModel.update(model, { where: { id: model.id } })
     .then(([affectedRowsCount]) => {
       if (affectedRowsCount) {
         return model;
@@ -39,7 +44,7 @@ const update = model => {
 };
 
 const remove = id => {
-  return CharacterModel.destroy({ where: { id } })
+  return UserModel.destroy({ where: { id } })
     .then((affectedRowsCount) => {
       if (affectedRowsCount) {
         return undefined;
@@ -48,11 +53,11 @@ const remove = id => {
       }
     });
 };
-
 module.exports = {
-  findAll,
-  get,
+  findByCredentials,
   create,
   update,
-  remove
-};
+  remove,
+  findAll,
+  getById
+}

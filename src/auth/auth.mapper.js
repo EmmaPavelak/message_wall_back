@@ -1,4 +1,7 @@
-const model = require('../user/user.model');
+const model = require('./user.model');
+//const bcrypt = require('bcrypt');
+//const saltRounds = 10;
+var sha1 = require('sha1');
 
 const toDto = model => ({
   id: model.id,
@@ -6,8 +9,12 @@ const toDto = model => ({
   lastname: model.lastname,
   username: model.username,  
   email: model.email,
-  password: model.password
+  password: sha1(model.password),//bcrypt.hashSync(model.password, saltRounds),
+  tel:model.tel,
+  address:model.address,
+  birthDate:model.birthDate
 });
+
 
 const toModel = dto => new model(dto);
 
