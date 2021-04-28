@@ -1,10 +1,8 @@
-const model = require('../users-message.model');
+const model = require('./users-message.model');
 
 const toDto = model => ({
   id: model.id,
-  firstname: model.firstname,
-  lastname: model.lastname, 
-  email: model.email,
+  username: model.username,
   message: model.message
 });
 

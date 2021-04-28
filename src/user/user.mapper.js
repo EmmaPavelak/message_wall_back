@@ -12,7 +12,9 @@ const toDto = model => ({
   password: sha1(model.password),//bcrypt.hashSync(model.password, saltRounds),
   tel:model.tel,
   address:model.address,
-  birthDate:model.birthDate
+  birthDate:model.birthDate,
+  nbmess:model.nbmess,
+  role:model.role
 });
 
 

@@ -33,6 +33,14 @@ const attributes = {
   birthDate: {
     type: DataTypes.DATE,
     allowNull: true
+  },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  nbmess: {
+    type: DataTypes.INTEGER,
+    allowNull: true
   }
 };
 

@@ -5,10 +5,13 @@ const extractToken = request => {
 }
 
 const authenticationMiddleware = (request, response, next) => {
-  const token = extractToken(request);
-  tokenService.tokenIsValid(token)
-    .then(() => next())
+  Promise.resolve()
+    .then(() => extractToken(request))
+    .then(token => tokenService.tokenIsValid(token))
+    .then(payload => {
+      request.user = payload;
+      next();
+    })
     .catch(next);
 };
-
 module.exports = authenticationMiddleware;

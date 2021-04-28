@@ -1,5 +1,5 @@
 const express = require('express');
-const authRouter = require('./auth/auth.router');
+const authRouter = require('./user/user.router');
 const contactRouter = require('./contact/contact.router');
 const usersmessageRouter = require('./users-message/users-message.router');
 const routeNotFoundMiddleware = require('./common/route-not-found.middleware');

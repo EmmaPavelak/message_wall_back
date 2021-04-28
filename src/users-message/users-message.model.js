@@ -2,15 +2,7 @@ const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../common/database/database.config');
 
 const attributes = {
-  firstname: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  lastname: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  email: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -30,9 +22,7 @@ class MessageModel extends Model {
     super();
     if (obj) {
       this.id = obj.id;
-      this.firstname = obj.firstname;
-      this.lastname = obj.lastname;
-      this.email = obj.email;
+      this.username = obj.username;
       this.message = obj.message;
     }
   }

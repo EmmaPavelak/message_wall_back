@@ -1,4 +1,4 @@
-const service = require('./auth.service');
+const service = require('./user.service');
 
 const login = (request, response, next) => {
   service.login(request.body)
@@ -35,10 +35,27 @@ const getById = (request, response, next) => {
   })
     .catch(next);
 };
+const update = (request, response, next) => {
+  const id = Number(request.params.id);
+  service.save(request.body, id)
+    .then(dto => response.json(dto))
+    .catch(next);
+};
 
+const remove = (request, response, next) => {
+  const id = Number(request.params.id);
+  service.remove(id)
+    .then(() => {
+      response.status(204);
+      response.json();
+    })
+    .catch(next);
+};
 module.exports = {
   login,
   registration,
   getById,
-  findAll 
+  findAll,
+  update,
+  remove
 }

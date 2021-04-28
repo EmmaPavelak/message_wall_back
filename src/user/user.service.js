@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const repository = require('./user.repository');
-const mapper = require('./auth.mapper');
+const mapper = require('./user.mapper');
 const tokenService = require('../common/token.service');
 const { INVALID_CREDENTIALS } = require('../common/error/error-type');
 //const bcrypt = require('bcrypt');
@@ -37,6 +37,10 @@ class AuthService {
 
   getById(id) {
     return repository.getById(id)
+  }
+  remove(id) {
+    return repository.remove(id)
+      .then(() => undefined);
   }
   
 }

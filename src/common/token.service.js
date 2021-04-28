@@ -4,7 +4,7 @@ const secret = 'custom-secret';
 
 const generateToken = payload => {
   return new Promise((resolve, reject) => {
-    jwt.sign(payload, secret, { expiresIn: 60 }, (error, token) => {
+    jwt.sign(payload, secret, { expiresIn: '24h' }, (error, token) => {
       if (error) {
         reject(error);
       } else {
