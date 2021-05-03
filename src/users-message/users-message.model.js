@@ -9,6 +9,14 @@ const attributes = {
   message: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  idUser: {
+    type: DataTypes.INTEGER,
+    allowNull: true
+  },
+  sendDate: {
+    type: DataTypes.DATE,
+    allowNull: false
   }
 };
 
@@ -24,6 +32,8 @@ class MessageModel extends Model {
       this.id = obj.id;
       this.username = obj.username;
       this.message = obj.message;
+      this.idUser = obj.idUser;
+      this.sendDate = obj.sendDate;
     }
   }
 }

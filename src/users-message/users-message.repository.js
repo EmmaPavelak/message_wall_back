@@ -18,7 +18,7 @@ const getById = id => {
     })
 };
 const getByUser = user => {
-  return MessageModel.findAll({ where: {username: user} })
+  return MessageModel.findAll({ where: { idUser: user} })
     .then(model => {
       if (model) {
         return model;

@@ -3,7 +3,9 @@ const model = require('./users-message.model');
 const toDto = model => ({
   id: model.id,
   username: model.username,
-  message: model.message
+  message: model.message,
+  idUser: model.idUser,
+  sendDate:model.sendDate
 });
 
 const toModel = dto => new model(dto);

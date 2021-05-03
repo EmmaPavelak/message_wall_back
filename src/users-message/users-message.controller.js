@@ -30,7 +30,8 @@ const getById = (request, response, next) => {
     .catch(next);
 };
 const getByUser = (request, response, next) => {
-  const user = String(request.params.user);
+  const user = String(request.params.id);
+  console.log(request.params);
   service.getByUser(user)
   .then(dto => {
     response.status(200);
