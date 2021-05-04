@@ -2,31 +2,31 @@ const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../common/database/database.config');
 
 const attributes = {
-  username: {
+  channelName: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  message: {
+  nbMessages: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  idUser: {
-    type: DataTypes.INTEGER,
-    allowNull: true
-  },
-  sendDate: {
+  creationDate: {
     type: DataTypes.DATE,
     allowNull: false
   },
-  idChannel: {
-    type: DataTypes.INTEGER,
+  statut: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  usersId: {
+    type: DataTypes.STRING,
     allowNull: true
   }
 };
 
 const options = {
   sequelize,
-  modelName: 'usersmessage'
+  modelName: 'channel'
 };
 
 class MessageModel extends Model {
@@ -34,11 +34,11 @@ class MessageModel extends Model {
     super();
     if (obj) {
       this.id = obj.id;
-      this.username = obj.username;
-      this.message = obj.message;
-      this.idUser = obj.idUser;
-      this.sendDate = obj.sendDate;
-      this.idChannel = obj.idChannel;
+      this.channelName = obj.channelName;
+      this.nbMessages = obj.nbMessages;
+      this.creationDate = obj.creationDate;
+      this.statut = obj.statut;
+      this.usersId=obj.usersId;
     }
   }
 }

@@ -1,4 +1,4 @@
-const service = require('./users-message.service');
+const service = require('./channels.service');
 
 
 
@@ -39,16 +39,6 @@ const getByUser = (request, response, next) => {
   })
     .catch(next);
 };
-const getByChannel = (request, response, next) => {
-  const channel = String(request.params.id);
-  console.log(request.params);
-  service.getByChannel(channel)
-  .then(dto => {
-    response.status(200);
-    response.json(dto);
-  })
-    .catch(next);
-};
 const update = (request, response, next) => {
   const id = Number(request.params.id);
   service.save(request.body, id)
@@ -69,7 +59,6 @@ module.exports = {
   create,
   getById,
   getByUser,
-  getByChannel,
   findAll,
   update,
   remove

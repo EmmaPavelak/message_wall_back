@@ -1,5 +1,6 @@
-const MessageModel = require('./users-message.model');
+const MessageModel = require('./channels.model');
 const { ValidationError } = require('sequelize');
+const { Op } = require('sequelize');
 const { RESOURCE_ID_NOT_FOUND, MISSING_RESOURCE_FIELD } = require('../common/error/error-type');
 
 
@@ -18,17 +19,7 @@ const getById = id => {
     })
 };
 const getByUser = user => {
-  return MessageModel.findAll({ where: { idUser: user} }) 
-    .then(model => {
-      if (model) {
-        return model;
-      } else {
-        return Promise.reject({ type: RESOURCE_ID_NOT_FOUND, param: id });
-      }
-    })
-};
-const getByChannel = channel => {
-  return MessageModel.findAll({ where: { idChannel: channel} })
+  return MessageModel.findAll({ where: { usersId: { [Op.like]: '%' + user + '%'} } })
     .then(model => {
       if (model) {
         return model;
@@ -75,6 +66,5 @@ module.exports = {
   remove,
   findAll,
   getById,
-  getByUser,
-  getByChannel
+  getByUser
 }

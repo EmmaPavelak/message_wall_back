@@ -1,7 +1,7 @@
-const repository = require('./users-message.repository');
-const mapper = require('./users-message.mapper');
+const repository = require('./channels.repository');
+const mapper = require('./channels.mapper');
 
-class MessageService {
+class ChannelService {
 
   save(model,id) {  
     if (id) {
@@ -20,9 +20,6 @@ class MessageService {
   getByUser(user) {
     return repository.getByUser(user)
   }
-  getByChannel(channel) {
-    return repository.getByChannel(channel)
-  }
   remove(id) {
     return repository.remove(id)
       .then(() => undefined);
@@ -30,6 +27,6 @@ class MessageService {
   
 }
 
-const messageService = new MessageService();
+const channelService = new ChannelService();
 
-module.exports = messageService;
+module.exports = channelService;

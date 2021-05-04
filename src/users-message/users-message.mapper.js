@@ -5,7 +5,8 @@ const toDto = model => ({
   username: model.username,
   message: model.message,
   idUser: model.idUser,
-  sendDate:model.sendDate
+  sendDate:model.sendDate,
+  idChannel:model.idChannel
 });
 
 const toModel = dto => new model(dto);
