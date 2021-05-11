@@ -28,7 +28,9 @@ const getByUser = user => {
     })
 };
 const getByChannel = channel => {
-  return MessageModel.findAll({ where: { idChannel: channel} })
+  return MessageModel.findAll({ where: { idChannel: channel} , 
+      order: [
+        ['id', 'DESC']]})
     .then(model => {
       if (model) {
         return model;
