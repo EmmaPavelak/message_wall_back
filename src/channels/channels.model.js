@@ -7,7 +7,7 @@ const attributes = {
     allowNull: false
   },
   nbMessages: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   creationDate: {
