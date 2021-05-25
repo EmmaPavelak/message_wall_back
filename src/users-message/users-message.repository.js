@@ -30,7 +30,7 @@ const getByUser = user => {
 const getByChannel = channel => {
   return MessageModel.findAll({ where: { idChannel: channel} , 
       order: [
-        ['id', 'DESC']]})
+        ['id', 'ASC']]})
     .then(model => {
       if (model) {
         return model;
