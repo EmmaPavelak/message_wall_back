@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
   host: 'localhost',
   dialect: 'mysql'
 });*/
+
 const sequelize = new Sequelize('ynov_final', 'ynov', 'oT4mI6fZ0bdX5d', {
   host: 'btcv.fr',
   dialect: 'mysql'

@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/login', controller.login);
 
-router.get('/users', authenticationMiddleware, authorizationMiddleware('Administrateur'), (request, response, next) => controller.findAll(request, response, next));
+router.get('/users', authenticationMiddleware, (request, response, next) => controller.findAll(request, response, next));
 router.get('/users/:id', checkIdParamMiddleware, (request, response, next) => controller.getById(request, response, next));
 router.post('/registration', (request, response, next) => controller.registration(request, response, next));
 router.put('/:id', authenticationMiddleware, checkIdParamMiddleware, (request, response, next) => controller.update(request, response, next)); 
